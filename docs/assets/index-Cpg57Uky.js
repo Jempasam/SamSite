@@ -85,7 +85,7 @@
 `;class K extends v{constructor(){super(),this.element=document.createElement("div"),this.element.attachShadow({mode:"open"}).append(l`
             <style>${J}</style>
             <slot></slot>
-        `)}set gap(e){this.element.style.setProperty("--gap",e)}set columns(e){this.element.style.setProperty("--columns",e)}set rows(e){this.element.style.setProperty("--rows",e)}set align(e){this.element.style.setProperty("--align",e)}set justify(e){this.element.style.setProperty("--justify",e)}}const Q=`
+        `)}set gap(e){this.element.style.setProperty("--gap",e)}set columns(e){this.element.style.setProperty("--columns",e)}set rows(e){this.element.style.setProperty("--rows",e)}set align(e){this.element.style.setProperty("--align",e)}set justify(e){this.element.style.setProperty("--justify",e)}}const X=`
     :host {
         display: flex;
         align-items: center;
@@ -94,9 +94,9 @@
         padding: var(--padding, 0);
     }
 `;class _ extends v{constructor(){super(),this.element=document.createElement("div"),this.element.attachShadow({mode:"open"}).append(l`
-            <style>${Q}</style>
+            <style>${X}</style>
             <slot></slot>
-        `)}set minHeight(e){this.element.style.setProperty("--min-height",e)}set padding(e){this.element.style.setProperty("--padding",e)}}const X=`
+        `)}set minHeight(e){this.element.style.setProperty("--min-height",e)}set padding(e){this.element.style.setProperty("--padding",e)}}const Z=`
     :host {
         display: grid;
         grid-template-areas: "stack";
@@ -105,8 +105,8 @@
     ::slotted(*) {
         grid-area: stack;
     }
-`;class Z extends v{constructor(){super(),this.element=document.createElement("div"),this.element.attachShadow({mode:"open"}).append(l`
-            <style>${X}</style>
+`;class Q extends v{constructor(){super(),this.element=document.createElement("div"),this.element.attachShadow({mode:"open"}).append(l`
+            <style>${Z}</style>
             <slot></slot>
         `)}}class ee extends v{constructor(e="medium"){super(),this.size=e,this.element=T("div",l`
             <style>${te}</style>
@@ -221,7 +221,7 @@
             opacity: 0;
         }
     }
-`;class j{constructor(e){this.url=e,this.descriptor=void 0}async get(){if(!this.descriptor){const e=this.url.split("/").slice(0,-1).join("/")+"/",n=e+"descriptor.json";let t=await(await fetch(n)).json();this.descriptor=t,t.thumbnail=e+t.thumbnail,t.descriptorURL=n,t.moduleURL=this.url,t.identifier??=t.vendor+"."+t.name}return this.descriptor}}let S;async function I(){if(!S){S=[];{const e=await(await fetch("https://www.webaudiomodules.com/community/plugins.json")).json();for(const n of e)S.push(new j(`https://www.webaudiomodules.com/community/plugins/${n.path}`))}for(const s of oe)S.push(new j(s))}return S}const oe=["https://mainline.i3s.unice.fr/PedalEditor/Back-End/functional-pedals/published/fluteForIS2/index.js","https://mainline.i3s.unice.fr/WAMChorusMB/","https://mainline.i3s.unice.fr/WamSampler/src/index.js","https://mainline.i3s.unice.fr/wam2/packages/faustPingPongDelay/plugin/index.js","https://mainline.i3s.unice.fr/wam2/packages/obxd/index.js","https://mainline.i3s.unice.fr/PedalEditor/Back-End/functional-pedals/published/clarinetMIDI/indexGUIStandard.js","https://mainline.i3s.unice.fr/PedalEditor/Back-End/functional-pedals/published/JUNO6v2/indexGUIStandard.js","https://wam-4tt.pages.dev/Pro54/index.js","https://mainline.i3s.unice.fr/WAMViktorNV1/viktorNV1/index.js","https://jempasam.github.io/cardboardwam/dist/index.mjs"];class ie extends v{constructor(){super(...arguments),this.element=T("div",l`
+`;class j{constructor(e){this.url=e,this.descriptor=void 0}async get(){if(!this.descriptor){const e=this.url.split("/").slice(0,-1).join("/")+"/",n=e+"descriptor.json";let t=await(await fetch(n)).json();this.descriptor=t,t.thumbnail=e+t.thumbnail,t.descriptorURL=n,t.moduleURL=this.url,t.identifier??=t.vendor+"."+t.name}return this.descriptor}}let S;async function I(){if(!S){S=[];{const e=await(await fetch("https://www.webaudiomodules.com/community/plugins.json")).json();for(const n of e)S.push(new j(`https://www.webaudiomodules.com/community/plugins/${n.path}`))}for(const s of oe)S.push(new j(s))}return S}const oe=["https://mainline.i3s.unice.fr/PedalEditor/Back-End/functional-pedals/published/fluteForIS2/index.js","https://mainline.i3s.unice.fr/WAMChorusMB/","https://mainline.i3s.unice.fr/WamSampler/src/index.js","https://mainline.i3s.unice.fr/wam2/packages/faustPingPongDelay/plugin/index.js","https://mainline.i3s.unice.fr/wam2/packages/obxd/index.js","https://mainline.i3s.unice.fr/PedalEditor/Back-End/functional-pedals/published/clarinetMIDI/indexGUIStandard.js","https://mainline.i3s.unice.fr/PedalEditor/Back-End/functional-pedals/published/JUNO6v2/indexGUIStandard.js","https://wam-4tt.pages.dev/Pro54/index.js","https://mainline.i3s.unice.fr/WAMViktorNV1/viktorNV1/index.js","https://jempasam.github.io/cardboardwam/dist/index.mjs","https://wam-bank.i3s.univ-cotedazur.fr/pedalboard2/index.js","https://wam-4tt.pages.dev/TX81Z/index.js"];class ie extends v{constructor(){super(...arguments),this.element=T("div",l`
             <style>${se}</style>
             <slot></slot>
         `,l`
@@ -369,7 +369,7 @@
         max-width: 100%;
         max-height: 100%;
     }
-`;class O extends v{constructor(e=""){super(),this._text="",this.textElement=null,this.copyButton=null,this._text=e,this.element=document.createElement("div");const n=this.element.attachShadow({mode:"open"});n.append(l`
+`;class z extends v{constructor(e=""){super(),this._text="",this.textElement=null,this.copyButton=null,this._text=e,this.element=document.createElement("div");const n=this.element.attachShadow({mode:"open"});n.append(l`
             <style>
                 :host {
                     display: inline-flex;
@@ -479,7 +479,7 @@
         from { opacity: 1; }
         to { opacity: 0; }
     }
-`;class z extends v{constructor(e,n={}){super();const{icon:i="▶",text:t="Initialiser",description:c="Cliquez pour charger le contenu"}=n;this.element=document.createElement("div"),this.shadowRoot=this.element.attachShadow({mode:"open"}),this.shadowRoot.appendChild(l.a`<style>${pe}</style>`);const u=document.createElement("div");u.className="-container";const d=document.createElement("button");d.className="-init-button",d.type="button";const m=document.createElement("p");m.className="-init-icon",m.textContent=i;const p=document.createElement("p");p.className="-init-text",p.textContent=t;const h=document.createElement("p");h.className="-init-description",h.textContent=c,d.appendChild(m),d.appendChild(p),d.appendChild(h),u.appendChild(d),this.shadowRoot.appendChild(u),d.addEventListener("click",()=>this.initialize(e,u))}initialize(e,n){try{n.style.animation="fadeOut 0.3s ease",setTimeout(()=>{try{const i=e(),t=this.element.parentNode;if(t){if(typeof i=="string"){const c=document.createElement("div");for(c.innerHTML=i;c.firstChild;)t.insertBefore(c.firstChild,this.element)}else t.insertBefore(i,this.element);t.removeChild(this.element)}}catch(i){n.innerHTML=`
+`;class O extends v{constructor(e,n={}){super();const{icon:i="▶",text:t="Initialiser",description:c="Cliquez pour charger le contenu"}=n;this.element=document.createElement("div"),this.shadowRoot=this.element.attachShadow({mode:"open"}),this.shadowRoot.appendChild(l.a`<style>${pe}</style>`);const u=document.createElement("div");u.className="-container";const d=document.createElement("button");d.className="-init-button",d.type="button";const m=document.createElement("p");m.className="-init-icon",m.textContent=i;const p=document.createElement("p");p.className="-init-text",p.textContent=t;const h=document.createElement("p");h.className="-init-description",h.textContent=c,d.appendChild(m),d.appendChild(p),d.appendChild(h),u.appendChild(d),this.shadowRoot.appendChild(u),d.addEventListener("click",()=>this.initialize(e,u))}initialize(e,n){try{n.style.animation="fadeOut 0.3s ease",setTimeout(()=>{try{const i=e(),t=this.element.parentNode;if(t){if(typeof i=="string"){const c=document.createElement("div");for(c.innerHTML=i;c.firstChild;)t.insertBefore(c.firstChild,this.element)}else t.insertBefore(i,this.element);t.removeChild(this.element)}}catch(i){n.innerHTML=`
                         <div class="-init-button" style="cursor: default; border-color: #f44336;">
                             <p class="-init-icon" style="color: #f44336;">⚠</p>
                             <p class="-init-text">Erreur d'initialisation</p>
@@ -661,9 +661,9 @@
                     />
                 </div>
                 <p>${p.description}</p>
-                ${new O(p.moduleURL)}
+                ${new z(p.moduleURL)}
                 <hr/>
-                ${new z(()=>new P(()=>t(p.moduleURL)).element)}
+                ${new O(()=>new P(()=>t(p.moduleURL)).element)}
             `:l`<p>Module non trouvé</p>`}const u=l`
             <section>
                 ${new P(c)}
@@ -697,7 +697,7 @@
 
                 ${new L("Retour à l'accueil",`${b}/home`).element}
             </section>
-        `,t=new E("about",i);this.element=t.element}}class ge extends v{constructor(e,n){super();const i=(f,B="#")=>{const k=document.createElement("a");return k.href=B,k.textContent=f,k},t=new V;t.gap="1rem",t.justify="space-between",t.element.append(i("Premier lien",`${b}/home`),i("Deuxième lien",`${b}/wam`),i("Troisième lien",`${b}/about`));const c=new F;c.gap="0.5rem",c.element.append(i("Lien du haut",`${b}/home`),i("Lien du milieu",`${b}/wam`),i("Lien du bas",`${b}/about`));const u=new R;u.gap="0.5rem";for(let f=1;f<=15;f++)u.element.appendChild(i(`Lien ${f}`,"#"));const d=new K;d.gap="1rem",d.columns="repeat(3, 1fr)";for(let f=1;f<=6;f++)d.element.appendChild(i(`Lien grille ${f}`,"#"));const m=new _;m.minHeight="200px",m.padding="2rem",m.element.appendChild(i("Lien centré","#/home"));const p=new Z,h=document.createElement("div");h.textContent="Couche de base";const y=i("Lien superposé","#");p.element.append(h,y);const o=new w;o.element.append(w.createButton("Nouveau",()=>alert("Nouveau")),w.createButton("Ouvrir",()=>alert("Ouvrir")),w.createButton("Enregistrer",()=>alert("Enregistrer")),w.createSeparator(),w.createButton("Couper",()=>alert("Couper")),w.createButton("Copier",()=>alert("Copier")),w.createButton("Coller",()=>alert("Coller")),w.createSeparator(),w.createButton("Annuler",()=>alert("Annuler"),{disabled:!0}));const r=new O("npm install @webaudiomodules/api"),a=new z(()=>{const f=document.createElement("div");return f.style.padding="2rem",f.style.background="var(--back-more)",f.style.borderRadius="var(--radius-normal)",f.innerHTML=`
+        `,t=new E("about",i);this.element=t.element}}class ge extends v{constructor(e,n){super();const i=(f,B="#")=>{const k=document.createElement("a");return k.href=B,k.textContent=f,k},t=new V;t.gap="1rem",t.justify="space-between",t.element.append(i("Premier lien",`${b}/home`),i("Deuxième lien",`${b}/wam`),i("Troisième lien",`${b}/about`));const c=new F;c.gap="0.5rem",c.element.append(i("Lien du haut",`${b}/home`),i("Lien du milieu",`${b}/wam`),i("Lien du bas",`${b}/about`));const u=new R;u.gap="0.5rem";for(let f=1;f<=15;f++)u.element.appendChild(i(`Lien ${f}`,"#"));const d=new K;d.gap="1rem",d.columns="repeat(3, 1fr)";for(let f=1;f<=6;f++)d.element.appendChild(i(`Lien grille ${f}`,"#"));const m=new _;m.minHeight="200px",m.padding="2rem",m.element.appendChild(i("Lien centré","#/home"));const p=new Q,h=document.createElement("div");h.textContent="Couche de base";const y=i("Lien superposé","#");p.element.append(h,y);const o=new w;o.element.append(w.createButton("Nouveau",()=>alert("Nouveau")),w.createButton("Ouvrir",()=>alert("Ouvrir")),w.createButton("Enregistrer",()=>alert("Enregistrer")),w.createSeparator(),w.createButton("Couper",()=>alert("Couper")),w.createButton("Copier",()=>alert("Copier")),w.createButton("Coller",()=>alert("Coller")),w.createSeparator(),w.createButton("Annuler",()=>alert("Annuler"),{disabled:!0}));const r=new z("npm install @webaudiomodules/api"),a=new O(()=>{const f=document.createElement("div");return f.style.padding="2rem",f.style.background="var(--back-more)",f.style.borderRadius="var(--radius-normal)",f.innerHTML=`
                     <h4 style="color: var(--spice); margin-bottom: 1rem;">Contenu Initialisé</h4>
                     <p style="color: var(--front-less); margin-bottom: 1rem;">
                         Ce contenu a été créé en cliquant sur le bouton d'initialisation.

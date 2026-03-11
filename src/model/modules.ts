@@ -65,4 +65,7 @@ const OTHER_MODULES = [
     "https://wam-4tt.pages.dev/Pro54/index.js",
     "https://mainline.i3s.unice.fr/WAMViktorNV1/viktorNV1/index.js",
     "https://jempasam.github.io/cardboardwam/dist/index.mjs",
+    "https://wam-bank.i3s.univ-cotedazur.fr/pedalboard2/index.js",
+    "https://wam-4tt.pages.dev/TX81Z/index.js",
+    "https://mainline.i3s.unice.fr/PedalEditor/Back-End/functional-pedals/published/JUNO6v2/index.js"
 ]

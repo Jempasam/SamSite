@@ -3,6 +3,7 @@ import { Component } from "../utils/Component"
 import { PageBase } from "../part/PageBase"
 import { Page } from "../component/Router"
 import { NavLink } from "../component/NavLink"
+import { root } from "../model/root"
 
 export class NotFoundPage extends Component {
     element: Node
@@ -17,13 +18,13 @@ export class NotFoundPage extends Component {
                 
                 <h3>Pages disponibles</h3>
                 <ul>
-                    <li><a href="#/home">Accueil</a></li>
-                    <li><a href="#/wam">Web Audio Modules</a></li>
-                    <li><a href="#/layouts">Composants de Layout</a></li>
-                    <li><a href="#/about">À propos</a></li>
+                    <li><a href="${root}/home">Accueil</a></li>
+                    <li><a href="${root}/wam">Web Audio Modules</a></li>
+                    <li><a href="${root}/layouts">Composants de Layout</a></li>
+                    <li><a href="${root}/about">À propos</a></li>
                 </ul>
                 
-                ${new NavLink('Retour à l\'accueil', '#/home').element}
+                ${new NavLink('Retour à l\'accueil', `${root}/home`).element}
             </section>
         `
 

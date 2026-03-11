@@ -1,5 +1,6 @@
 import { html } from "sam-lib"
 import { Component } from "../utils/Component"
+import { root } from "../model/root"
 
 
 const menus = {
@@ -26,7 +27,7 @@ export class PageBase extends Component{
                         ${function*(){
                             for(const [id, label] of Object.entries(menus)){
                                 const isSelected = id === name
-                                yield html.a`<a href="/${id}" class="menu-item ${isSelected?"selected":""}">${label}</a>`
+                                yield html.a`<a href="${root}/${id}" class="menu-item ${isSelected?"selected":""}">${label}</a>`
                             }
                         }}
                     </nav>

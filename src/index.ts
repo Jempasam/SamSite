@@ -5,9 +5,12 @@ import { WAMDetailPage } from "./page/WAMDetailPage"
 import { AboutPage } from "./page/AboutPage"
 import { LayoutsPage } from "./page/LayoutsPage"
 import { NotFoundPage } from "./page/NotFoundPage"
+import { root } from "./model/root"
 
 // Configuration du router avec les pages
-const router = new Router([
+const router = new Router(
+    root,
+    [
     {
         name: "home",
         pattern: ["home"],

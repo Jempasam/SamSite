@@ -6,6 +6,7 @@ import { FlowBox } from "../component/layout";
 import { Card } from "../component/Card";
 import { AsyncContent } from "../component/AsyncContent";
 import { getModules } from "../model/modules";
+import { root } from "../model/root";
 
 
 
@@ -32,7 +33,7 @@ export class WAMListPage extends Component {
                                     title="${item.name}"
                                     text="${item.desc}"
                                     img="${item.img}"
-                                    link="/wam/${item.id}"
+                                    link="${root}/wam/${item.id}"
                                     style="width: 49%;"
                                 ></div>
                             `

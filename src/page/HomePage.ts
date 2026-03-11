@@ -2,6 +2,7 @@ import { html } from "sam-lib"
 import { Component } from "../utils/Component"
 import { PageBase } from "../part/PageBase"
 import { Page } from "../component/Router"
+import { root } from "../model/root"
 
 export class HomePage extends Component {
     element: Node
@@ -16,11 +17,11 @@ export class HomePage extends Component {
                 
                 <h3>Navigation</h3>
                 <ul>
-                    <li><a href="#/home">Accueil</a></li>
-                    <li><a href="#/wam">Web Audio Modules</a></li>
-                    <li><a href="#/wam/123">WAM Detail (exemple avec ID 123)</a></li>
-                    <li><a href="#/layouts">Composants de Layout</a></li>
-                    <li><a href="#/about">À propos</a></li>
+                    <li><a href="${root}/home">Accueil</a></li>
+                    <li><a href="${root}/wam">Web Audio Modules</a></li>
+                    <li><a href="${root}/wam/123">WAM Detail (exemple avec ID 123)</a></li>
+                    <li><a href="${root}/layouts">Composants de Layout</a></li>
+                    <li><a href="${root}/about">À propos</a></li>
                 </ul>
 
                 <h3>Fonctionnalités</h3>

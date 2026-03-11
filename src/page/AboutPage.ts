@@ -3,6 +3,7 @@ import { Component } from "../utils/Component"
 import { PageBase } from "../part/PageBase"
 import { Page } from "../component/Router"
 import { NavLink } from "../component/NavLink"
+import { root } from "../model/root"
 
 export class AboutPage extends Component {
     element: Node
@@ -37,7 +38,7 @@ export class AboutPage extends Component {
                     <li>Et beaucoup d'autres...</li>
                 </ul>
 
-                ${new NavLink('Retour à l\'accueil', '#/home').element}
+                ${new NavLink('Retour à l\'accueil', `${root}/home`).element}
             </section>
         `
 

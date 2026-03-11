@@ -12,6 +12,7 @@ import { NavLink } from "../component/NavLink"
 import { Toolbar } from "../component/Toolbar"
 import CopyableText from "../component/CopyableText"
 import { InitiableContent } from "../component/InitiableContent"
+import { root } from "../model/root"
 
 export class LayoutsPage extends Component {
     element: Node
@@ -32,18 +33,18 @@ export class LayoutsPage extends Component {
         hbox.gap = '1rem';
         hbox.justify = 'space-between';
         hbox.element.append(
-            createLink('Premier lien', '#/home'),
-            createLink('Deuxième lien', '#/wam'),
-            createLink('Troisième lien', '#/about')
+            createLink('Premier lien', `${root}/home`),
+            createLink('Deuxième lien', `${root}/wam`),
+            createLink('Troisième lien', `${root}/about`)
         );
 
         // VBox demo
         const vbox = new VBox();
         vbox.gap = '0.5rem';
         vbox.element.append(
-            createLink('Lien du haut', '#/home'),
-            createLink('Lien du milieu', '#/wam'),
-            createLink('Lien du bas', '#/about')
+            createLink('Lien du haut', `${root}/home`),
+            createLink('Lien du milieu', `${root}/wam`),
+            createLink('Lien du bas', `${root}/about`)
         );
 
         // FlowBox demo - éléments plus petits

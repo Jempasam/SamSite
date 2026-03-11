@@ -11,15 +11,15 @@ export interface Page {
 
 export class Router extends Component {
     readonly element: DocumentFragment;
-    private pages: Page[];
-    private defaultPage?: Page;
     private currentComponent: Component | null = null;
     private container: HTMLElement | null = null;
 
-    constructor(pages: Page[], defaultPage?: Page) {
+    constructor(
+        private root: string,
+        private pages: Page[],
+        private defaultPage?: Page
+    ) {
         super();
-        this.pages = pages;
-        this.defaultPage = defaultPage;
         this.element = html``;
 
         // Écouter les changements de hash
@@ -42,6 +42,8 @@ export class Router extends Component {
     }
 
     private matchRoute(path: string): { page: Page; pageId: string, matches: string[] } | null {
+
+        if(path.startsWith(this.root)) path = path.slice(this.root.length)
         
         for (const page of this.pages) {
             const regex = this.buildRegex(page.pattern)

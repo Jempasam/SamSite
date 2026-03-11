@@ -64,8 +64,8 @@ export class WAMDetailPage extends Component {
         }
 
         async function createModule(){
-            const modules = await getModules()
-            const module = modules.find(m => m.id === wamId)
+            const modules = await Promise.all((await getModules()).map(m=>m.get()))
+            const module = modules.find(m => m.identifier === wamId)
             if(!module) return html`<p>Module non trouvé</p>`
 
             const description = html`
@@ -74,14 +74,14 @@ export class WAMDetailPage extends Component {
                     <img
                         alt="${module.name}"
                         width=100%
-                        src="${module.img}"
+                        src="${module.thumbnail}"
                         style="max-height: 600px; object-fit: contain;"
                     />
                 </div>
-                <p>${module.desc}</p>
-                ${new CopyableText(module.url)}
+                <p>${module.description}</p>
+                ${new CopyableText(module.moduleURL)}
                 <hr/>
-                ${new InitiableContent(()=>new AsyncContent(()=>createWebAudioModule(module.url)).element)}
+                ${new InitiableContent(()=>new AsyncContent(()=>createWebAudioModule(module.moduleURL)).element)}
             `
 
             return description

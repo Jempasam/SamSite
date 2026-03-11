@@ -75,7 +75,7 @@
     .header-container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: var(--spacing-normal) var(--spacing-large);
+        padding: var(--spacing-tiny) var(--spacing-large);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -101,13 +101,12 @@
     }
     .menu-item {
         position: relative;
-        padding: var(--spacing-small) var(--spacing-large);
+        padding: var(--spacing-tiny) var(--spacing-large);
         background: transparent;
         color: var(--front-less);
         font-weight: 600;
         font-size: var(--font-normal);
         text-decoration: none;
-        border-radius: var(--radius-normal);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         overflow: hidden;
     }
@@ -235,7 +234,6 @@
         list-style-type: decimal;
     }
     li {
-        margin-bottom: var(--spacing-small);
         line-height: var(--line-height);
     }
     li::marker {

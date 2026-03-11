@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "module": "es2022",
+        "types": ["vite"]
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

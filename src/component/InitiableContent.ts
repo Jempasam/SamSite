@@ -66,7 +66,7 @@ export class InitiableContent extends Component {
     private shadowRoot: ShadowRoot;
 
     constructor(
-        initFn: () => Node | string | Promise<Node | string>,
+        initFn: () => Node | string,
         options: {
             icon?: string;
             text?: string;
@@ -117,41 +117,52 @@ export class InitiableContent extends Component {
         button.addEventListener('click', () => this.initialize(initFn, container));
     }
 
-    private async initialize(
-        initFn: () => Node | string | Promise<Node | string>,
+    private initialize(
+        initFn: () => Node | string,
         container: HTMLElement
     ) {
         try {
             // Animation de transition
             container.style.animation = 'fadeOut 0.3s ease';
             
-            // Attendre la fin de l'animation
-            await new Promise(resolve => setTimeout(resolve, 300));
-            
-            // Exécuter la fonction d'initialisation
-            const result = await initFn();
-            
-            // Remplacer complètement l'élément InitiableContent par le contenu initialisé
-            const parent = this.element.parentNode;
-            if (parent) {
-                if (typeof result === 'string') {
-                    // Créer un conteneur temporaire pour le HTML string
-                    const temp = document.createElement('div');
-                    temp.innerHTML = result;
-                    // Remplacer par les enfants du conteneur
-                    while (temp.firstChild) {
-                        parent.insertBefore(temp.firstChild, this.element);
+            // Attendre la fin de l'animation puis exécuter
+            setTimeout(() => {
+                try {
+                    // Exécuter la fonction d'initialisation
+                    const result = initFn();
+                    
+                    // Remplacer complètement l'élément InitiableContent par le contenu initialisé
+                    const parent = this.element.parentNode;
+                    if (parent) {
+                        if (typeof result === 'string') {
+                            // Créer un conteneur temporaire pour le HTML string
+                            const temp = document.createElement('div');
+                            temp.innerHTML = result;
+                            // Remplacer par les enfants du conteneur
+                            while (temp.firstChild) {
+                                parent.insertBefore(temp.firstChild, this.element);
+                            }
+                        } else {
+                            // Insérer le node directement avant l'élément actuel
+                            parent.insertBefore(result, this.element);
+                        }
+                        // Supprimer l'élément InitiableContent
+                        parent.removeChild(this.element);
                     }
-                } else {
-                    // Insérer le node directement avant l'élément actuel
-                    parent.insertBefore(result, this.element);
+                } catch (error) {
+                    // En cas d'erreur, afficher un message d'erreur
+                    container.innerHTML = `
+                        <div class="-init-button" style="cursor: default; border-color: #f44336;">
+                            <p class="-init-icon" style="color: #f44336;">⚠</p>
+                            <p class="-init-text">Erreur d'initialisation</p>
+                            <p class="-init-description">${error instanceof Error ? error.message : 'Erreur inconnue'}</p>
+                        </div>
+                    `;
                 }
-                // Supprimer l'élément InitiableContent
-                parent.removeChild(this.element);
-            }
+            }, 300);
             
         } catch (error) {
-            // En cas d'erreur, afficher un message d'erreur
+            // En cas d'erreur lors du démarrage de l'animation
             container.innerHTML = `
                 <div class="-init-button" style="cursor: default; border-color: #f44336;">
                     <p class="-init-icon" style="color: #f44336;">⚠</p>

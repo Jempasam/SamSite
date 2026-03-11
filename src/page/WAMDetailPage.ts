@@ -9,6 +9,9 @@ import { CenterBox } from "../component/layout"
 import { WebAudioModule } from "@webaudiomodules/api"
 import { EmbedContainer } from "../component/EmbedContainer"
 import CopyableText from "../component/CopyableText"
+import { InitiableContent } from "../component/InitiableContent"
+import { Microphone } from "../component/Microphone"
+import { Toolbar } from "../component/Toolbar"
 
 export class WAMDetailPage extends Component {
     element: Node
@@ -19,9 +22,6 @@ export class WAMDetailPage extends Component {
         console.log(wamId)
 
         async function createWebAudioModule(url: string){
-
-            await new Promise(resolve => window.addEventListener('click',resolve,{once:true}))
-
             const audioContext = new AudioContext()
             const { default: initializeWamHost } = await import("https://www.webaudiomodules.com/sdk/2.0.0-alpha.6/src/initializeWamHost.js")
             const [groupId, key] = await initializeWamHost(audioContext, "example");
@@ -34,11 +34,32 @@ export class WAMDetailPage extends Component {
             const piano = await pianoConstructor.createInstance(groupId, audioContext)
             const pianoGui = await piano.createGui()
 
+            const microphone = new Microphone(audioContext)
+            microphone.onStart = (source) => {
+                source.connect(wam.audioNode)
+            }
+
+            const toolbar = html.a`
+                <${new Toolbar()}>
+                    ${Toolbar.createButton("Copy State", async()=>{
+                        const state = await wam.audioNode.getState()
+                        await navigator.clipboard.writeText(JSON.stringify(state))
+                    })}
+
+                    ${Toolbar.createButton("Paste State", async ()=>{
+                        const text = await navigator.clipboard.readText()
+                        await wam.audioNode.setState(JSON.parse(text))
+                    })}
+                </div>
+            `
+
             piano.audioNode.connectEvents(wam.audioNode.instanceId)
             wam.audioNode.connect(audioContext.destination)
             return html`
+                ${toolbar}
                 <${new EmbedContainer()}>${gui}</div>
                 ${pianoGui}
+                ${microphone}
             `
         }
 
@@ -60,7 +81,7 @@ export class WAMDetailPage extends Component {
                 <p>${module.desc}</p>
                 ${new CopyableText(module.url)}
                 <hr/>
-                ${new AsyncContent(()=>createWebAudioModule(module.url))}
+                ${new InitiableContent(()=>new AsyncContent(()=>createWebAudioModule(module.url)).element)}
             `
 
             return description

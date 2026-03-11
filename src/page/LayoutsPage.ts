@@ -12,6 +12,7 @@ import { NavLink } from "../component/NavLink"
 import { Toolbar } from "../component/Toolbar"
 import CopyableText from "../component/CopyableText"
 import { InitiableContent } from "../component/InitiableContent"
+import { Microphone } from "../component/Microphone"
 import { root } from "../model/root"
 
 export class LayoutsPage extends Component {
@@ -119,6 +120,9 @@ export class LayoutsPage extends Component {
             }
         );
 
+        // Microphone demo
+        const microphone = new Microphone();
+
         const content = html.a`
             <section id="layouts">
                 <h2>Composants de Layout</h2>
@@ -220,6 +224,15 @@ export class LayoutsPage extends Component {
                         ${initiableContent.element}
                     </div>
                     <p><code>new InitiableContent(() => element, { icon, text, description });</code></p>
+                </article>
+
+                <article>
+                    <h3>Microphone - Contrôle Audio</h3>
+                    <p>Contrôle d'accès au microphone avec MediaStream. Démarre/arrête la capture audio et fournit un MediaStreamAudioSourceNode pour le Web Audio API via les callbacks.</p>
+                    <div>
+                        ${microphone.element}
+                    </div>
+                    <p><code>const mic = new Microphone(); mic.onStart = (source) => source.connect(node);</code></p>
                 </article>
 
                 ${new NavLink('Retour à l\'accueil', '#/home').element}

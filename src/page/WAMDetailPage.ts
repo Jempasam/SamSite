@@ -12,6 +12,8 @@ import CopyableText from "../component/CopyableText"
 import { InitiableContent } from "../component/InitiableContent"
 import { Microphone } from "../component/Microphone"
 import { Toolbar } from "../component/Toolbar"
+import { getPresets } from "../model/presets"
+import { CopyButton } from "../component/CopyButton"
 
 export class WAMDetailPage extends Component {
     element: Node
@@ -19,7 +21,34 @@ export class WAMDetailPage extends Component {
     constructor(pageId: string, pages: Page[], wamId: string) {
         super()
 
-        console.log(wamId)
+        async function createPresetList(onLoad: (state: any)=>void){
+            const presetMap = await (await getPresets()[wamId])?.get()
+            if(!presetMap) return html``
+
+            const presets = Object.entries(presetMap)
+
+            // Selectbox
+            const options = presets.map(([key, p]) =>{
+                const opt = html.a`<option value="${key}">${key}</option>`
+                opt.onclick = () =>{
+                    onLoad(p)
+                }
+                return opt
+            })
+            const select = html.a`
+                <select>
+                    <option disabled selected>---PRESETS---</option>
+                </select>
+            `
+            select.append(...options)
+
+            // Copy button
+            const copyButton = new CopyButton(() => JSON.stringify(presetMap));
+            return html`
+                ${select}
+                ${copyButton}
+            `
+        }
 
         async function createWebAudioModule(url: string){
             const audioContext = new AudioContext()
@@ -50,6 +79,8 @@ export class WAMDetailPage extends Component {
                         const text = await navigator.clipboard.readText()
                         await wam.audioNode.setState(JSON.parse(text))
                     })}
+
+                    ${new AsyncContent(()=>createPresetList(state=>wam.audioNode.setState(state)), true)}
                 </div>
             `
 

@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
         "module": "es2022",
-        "types": ["vite"]
+        "types": ["vite/client"],
     },
     "exclude": [
         "node_modules"
-    ]
+    ],
 }
